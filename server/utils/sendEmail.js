@@ -6,9 +6,6 @@ const sendEmail = async ({ to, html, subject }) => {
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
     secure: false,
-    tls: {
-      ciphers: "SSLv3",
-    },
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
@@ -17,11 +14,22 @@ const sendEmail = async ({ to, html, subject }) => {
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
 
-  transporter.sendMail(mailOptions, function (err, info) {
-    if (err) {
-      console.log(err);
-      throw new CustomError("Error sending email", 500);
-    }
+  // transporter.sendMail(mailOptions, function (err, info) {
+  //   if (err) {
+  //     console.log(err);
+  //     throw new CustomError("Error sending email", 500);
+  //   }
+  // });
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        resolve(info);
+      }
+    });
   });
 };
 
