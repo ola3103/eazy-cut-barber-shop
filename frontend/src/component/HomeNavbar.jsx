@@ -15,7 +15,10 @@ const HomeNavbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URL || ""}/api/v1/auth/logout`,
+        `${
+          import.meta.env.VITE_API_BASE_URL ||
+          import.meta.env.VITE_API_BASE_URL_PROD
+        }/api/v1/auth/logout`,
         {
           withCredentials: true,
         }

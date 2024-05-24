@@ -62,9 +62,7 @@ exports.registerUser = async (req, res) => {
   try {
     const verificationUrl =
       process.env.NODE_ENV === "production"
-        ? `${req.protocol}://${req.get(
-            "host"
-          )}/verify-email?token=${verificationToken}&email=${email}`
+        ? `https://eazy-cut.vercel.app/verify-email?token=${verificationToken}&email=${email}`
         : `${req.protocol}://localhost:5173/verify-email?token=${verificationToken}&email=${email}`;
     const htmlContent = `<h1>Hello ${user.fullName}</h1>
     <p>Kindly click on the link to verify your account ${verificationUrl}</p>

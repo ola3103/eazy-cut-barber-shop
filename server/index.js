@@ -24,13 +24,17 @@ app.post(
 
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? `https://eazy-cut.vercel.app`
+        : `http://localhost:5173`,
+    credentials: true,
+  })
+);
 
 app.options("*", cors());
-
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World");
-});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/service", serviceRouter);

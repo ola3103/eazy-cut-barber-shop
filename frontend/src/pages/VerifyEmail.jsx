@@ -23,7 +23,10 @@ const VerifyEmail = () => {
     setIsloading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/verify-user`,
+        `${
+          import.meta.env.VITE_API_BASE_URL ||
+          import.meta.env.VITE_API_BASE_URL_PROD
+        }/api/v1/auth/verify-user`,
         dataObj,
         { withCredentials: true }
       );

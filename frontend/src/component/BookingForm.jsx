@@ -88,7 +88,10 @@ const BookingForm = () => {
     );
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL || ""}/api/v1/booking`,
+        `${
+          import.meta.env.VITE_API_BASE_URL ||
+          import.meta.env.VITE_API_BASE_URL_PROD
+        }/api/v1/booking`,
         data,
         { withCredentials: true }
       );
@@ -98,7 +101,8 @@ const BookingForm = () => {
 
       const stripeResponse = await axios.post(
         `${
-          import.meta.env.VITE_API_BASE_URL || ""
+          import.meta.env.VITE_API_BASE_URL ||
+          import.meta.env.VITE_API_BASE_URL_PROD
         }/api/v1/booking/create-checkout-session`,
         { bookingSummary, bookingId },
 

@@ -26,12 +26,12 @@ exports.createBookingSession = async (req, res) => {
     mode: "payment",
     success_url:
       process.env.NODE_ENV === "production"
-        ? `${req.protocol}://${req.get("host")}/bookings`
+        ? `https://eazy-cut.vercel.app/bookings`
         : "http://localhost:5173/bookings",
     cancel_url:
       process.env.NODE_ENV === "production"
-        ? `${req.protocol}://${req.get("host")}`
-        : "http://localhost:5173/bookings",
+        ? `https://eazy-cut.vercel.app/home`
+        : "http://localhost:5173/home",
     client_reference_id: bookingId,
     customer_email: req.user.email,
   });
