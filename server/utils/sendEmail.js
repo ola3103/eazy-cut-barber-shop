@@ -53,7 +53,11 @@ const sendEmail = async ({ to, html, subject }) => {
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
 
-  return transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = sendEmail;
