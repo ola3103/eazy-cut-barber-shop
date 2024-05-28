@@ -38,6 +38,7 @@ const sendEmail = async ({ to, html, subject }) => {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
     },
+    authMethod: "PLAIN",
   });
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
