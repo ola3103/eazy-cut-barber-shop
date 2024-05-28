@@ -67,9 +67,9 @@ const nodemailer = require("nodemailer");
 const wrappedSendMail = async (mailOptions) => {
   return new Promise((resolve, reject) => {
     let transporter = nodemailer.createTransport({
-      host: "smtp-mail.outlook.com",
-      port: 587,
-      secure: false,
+      host: "smtp-mail.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
