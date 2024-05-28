@@ -41,13 +41,11 @@ const sendEmail = async ({ to, html, subject }) => {
   });
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
-
-  transporter.sendMail(mailOptions, function (err, info) {
-    if (err) {
-      console.log(err);
-      throw new CustomError("Error sending email", 500);
-    }
-  });
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = sendEmail;
