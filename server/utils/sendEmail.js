@@ -11,6 +11,9 @@ const sendEmail = async ({ to, html, subject }) => {
       pass: process.env.EMAIL_PASS,
     },
     authMethod: "PLAIN",
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
