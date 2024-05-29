@@ -3,7 +3,7 @@ const CustomError = require("../errors/customError");
 
 const sendEmail = async ({ to, html, subject }) => {
   const transporter = nodemailer.createTransport({
-    host: smtp - mail.outlook.com,
+    host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
     auth: {
