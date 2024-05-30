@@ -44,7 +44,11 @@ app.get("/test-email", async (req, res) => {
       subject: "test email",
       html: `<p>Test Email</p>`,
     });
-    res.status(200).send("Email sent successfully");
+    res.status(200).json({
+      message: "Email sent successfully",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    });
   } catch (error) {
     res.status(500).send(`Error sending email: ${error}`);
   }
