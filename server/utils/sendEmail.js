@@ -3,15 +3,12 @@ const CustomError = require("../errors/customError");
 
 const sendEmail = async ({ to, html, subject }) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    port: 587,
-    secure: false,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      ciphers: "SSLv3",
     },
     debug: true,
     logger: true,
@@ -21,6 +18,7 @@ const sendEmail = async ({ to, html, subject }) => {
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log("mail sent successfully");
   } catch (error) {
     console.log(error);
   }
