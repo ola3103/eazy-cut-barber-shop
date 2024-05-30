@@ -15,6 +15,7 @@ const authRouter = require("./routes/authRoute");
 const serviceRouter = require("./routes/serviceRoute");
 const bookingRouter = require("./routes/bookingRoute");
 const CustomError = require("./errors/customError");
+const sendEmail = require("./utils/sendEmail");
 
 app.post(
   "/webhook-checkout",
@@ -35,6 +36,19 @@ app.use(
 );
 
 app.options("*", cors());
+
+app.get("/test-email", async (req, res) => {
+  try {
+    await sendEmail({
+      to: "wonuolaolakunle@gmail.com",
+      subject: "test email",
+      html: `<p>Test Email</p>`,
+    });
+    res.status(200).send("Email sent successfully");
+  } catch (error) {
+    res.status(500).send(`Error sending email: ${error}`);
+  }
+});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/service", serviceRouter);
