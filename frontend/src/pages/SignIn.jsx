@@ -19,7 +19,6 @@ const SignIn = () => {
       setIsLoggedIn(true);
       setUser(response.data.data);
       navigate("/home");
-      window.location.reload();
     }
   };
 
