@@ -36,7 +36,6 @@ const VerifyEmail = () => {
       setUser(response.data.data);
       setIsLoggedIn(true);
       navigate("/home");
-      window.location.reload();
     } catch (error) {
       notification({ message: error.response.data.message, status: "error" });
       navigate("/");

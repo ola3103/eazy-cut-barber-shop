@@ -11,7 +11,7 @@ export const registerUser = async (formData) => {
       formData
     );
   } catch (error) {
-    console.log(error);
+    notification({ message: error.response.data.message, status: "error" });
   }
 };
 
