@@ -33,8 +33,8 @@ const VerifyEmail = () => {
         import.meta.env.VITE_API_BASE_URL,
         import.meta.env.VITE_API_BASE_URL_PROD
       );
-      setUser(response.data.data);
-      setIsLoggedIn(true);
+      await setUser(response.data.data);
+      await setIsLoggedIn(true);
       navigate("/home");
     } catch (error) {
       notification({ message: error.response.data.message, status: "error" });
