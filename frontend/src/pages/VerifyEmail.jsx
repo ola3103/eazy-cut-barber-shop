@@ -11,7 +11,7 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
 
   const queryParams = new URLSearchParams(location.search);
   const dataObj = {
@@ -20,7 +20,6 @@ const VerifyEmail = () => {
   };
 
   const handleVerifyEmail = async () => {
-    setIsloading(true);
     try {
       const response = await axios.post(
         `${
@@ -30,30 +29,31 @@ const VerifyEmail = () => {
         dataObj,
         { withCredentials: true }
       );
+      console.log(
+        import.meta.env.VITE_API_BASE_URL,
+        import.meta.env.VITE_API_BASE_URL_PROD
+      );
       setUser(response.data.data);
       setIsLoggedIn(true);
+      navigate("/home");
       window.location.reload();
     } catch (error) {
       notification({ message: error.response.data.message, status: "error" });
+      navigate("/");
+    } finally {
+      setIsloading(false);
     }
-    setIsloading(false);
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      handleVerifyEmail();
-    }
+    handleVerifyEmail();
   }, []);
 
   if (isLoading) {
     <Loader />;
   }
 
-  if (!isLoggedIn) {
-    return <Loader />;
-  }
-
-  return isLoggedIn ? navigate("/home") : navigate("/");
+  return <div className="verify_page"></div>;
 };
 
 export default VerifyEmail;
