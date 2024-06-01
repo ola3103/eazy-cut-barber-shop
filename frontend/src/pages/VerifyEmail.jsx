@@ -35,8 +35,10 @@ const VerifyEmail = () => {
       );
       await setUser(response.data.data);
       await setIsLoggedIn(true);
-      navigate("/home"); 
+      console.log(response.data.data);
+      navigate("/home");
     } catch (error) {
+      console.error(error.response);
       notification({ message: error.response.data.message, status: "error" });
       navigate("/");
     } finally {
