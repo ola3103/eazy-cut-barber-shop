@@ -6,9 +6,10 @@ import Loader from "./Loader";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    return async () => {
+    const fetchBookings = async () => {
       try {
         const response = await axios.get(
           `${
@@ -21,8 +22,12 @@ const Bookings = () => {
         setBookings(response.data.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
+
+    fetchBookings();
   }, []);
 
   console.log(bookings);
@@ -31,7 +36,7 @@ const Bookings = () => {
     return <SingleBooking key={book._id} book={book} />;
   });
 
-  if (!bookings) {
+  if (isLoading) {
     return <Loader />;
   }
 
