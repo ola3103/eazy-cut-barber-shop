@@ -77,11 +77,10 @@ exports.registerUser = async (req, res) => {
     user.verificationToken = undefined;
     user.verificationTokenExpiresIn = undefined;
     await User.findOneAndDelete({ email });
-    // throw new CustomError(
-    //   "There was problem sending email, please try again",
-    //   500
-    // );
-    console.log(error);
+    throw new CustomError(
+      "There was problem sending email, please try again",
+      500
+    );
   }
   res.status(200).json({
     status: "success",

@@ -18,7 +18,6 @@ const Bookings = () => {
           }/api/v1/booking`,
           { withCredentials: true }
         );
-        console.log(response);
         setBookings(response.data.data);
       } catch (error) {
         console.log(error);
@@ -29,8 +28,6 @@ const Bookings = () => {
 
     fetchBookings();
   }, []);
-
-  console.log(bookings);
 
   const allBookings = bookings.map((book) => {
     return <SingleBooking key={book._id} book={book} />;

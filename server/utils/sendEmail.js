@@ -10,15 +10,12 @@ const sendEmail = async ({ to, html, subject }) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    debug: true,
-    logger: true,
   });
 
   const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("mail sent successfully");
   } catch (error) {
     console.log(error);
   }

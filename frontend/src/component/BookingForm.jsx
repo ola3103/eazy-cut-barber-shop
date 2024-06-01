@@ -96,7 +96,6 @@ const BookingForm = () => {
         { withCredentials: true }
       );
 
-      console.log(response);
       const bookingId = response.data.data._id;
 
       const stripeResponse = await axios.post(
