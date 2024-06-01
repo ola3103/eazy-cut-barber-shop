@@ -33,7 +33,7 @@ const VerifyEmail = () => {
         import.meta.env.VITE_API_BASE_URL,
         import.meta.env.VITE_API_BASE_URL_PROD
       );
-      await setUser(response.data.data);
+      // await setUser(response.data.data);
       await setIsLoggedIn(true);
       console.log(response.data.data);
       navigate("/home");
