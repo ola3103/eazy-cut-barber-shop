@@ -170,7 +170,7 @@ exports.signIn = async (req, res) => {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 90),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "None",
+    // sameSite: "None",
   });
 
   const userObj = {
