@@ -35,7 +35,7 @@ const VerifyEmail = () => {
       );
       await setUser(response.data.data);
       await setIsLoggedIn(true);
-      navigate("/home");
+      navigate("/home"); 
     } catch (error) {
       notification({ message: error.response.data.message, status: "error" });
       navigate("/");
