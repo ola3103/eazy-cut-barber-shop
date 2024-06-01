@@ -129,6 +129,7 @@ exports.verifyEmail = async (req, res) => {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 90),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
   });
 
   res.status(200).json({
@@ -169,6 +170,7 @@ exports.signIn = async (req, res) => {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 90),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
   });
 
   const userObj = {
@@ -197,6 +199,7 @@ exports.logoutUser = async (req, res) => {
     expires: new Date(Date.now()),
     secure: true,
     httpOnly: process.env.NODE_ENV === "production",
+    sameSite: "None",
   });
 
   res.status(200).json({ status: "success", message: "log out successful" });
