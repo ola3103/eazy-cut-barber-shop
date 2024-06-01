@@ -29,16 +29,10 @@ const VerifyEmail = () => {
         dataObj,
         { withCredentials: true }
       );
-      console.log(
-        import.meta.env.VITE_API_BASE_URL,
-        import.meta.env.VITE_API_BASE_URL_PROD
-      );
-      // await setUser(response.data.data);
       await setIsLoggedIn(true);
-      console.log(response.data.data);
       navigate("/home");
+      window.location.reload();
     } catch (error) {
-      console.error(error.response);
       notification({ message: error.response.data.message, status: "error" });
       navigate("/");
     } finally {

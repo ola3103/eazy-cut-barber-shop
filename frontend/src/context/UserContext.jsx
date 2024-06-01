@@ -39,11 +39,9 @@ const UserProvider = ({ children }) => {
         }
       );
       setUser(response.data.data);
-      console.log(response.data.data);
       setIsLoggedIn(true);
       return response;
     } catch (error) {
-      console.log(error.response);
       notification({ message: error.response.data.message, status: "error" });
       navigate("/sign-in");
     }
