@@ -17,8 +17,9 @@ const SignIn = () => {
     const response = await apiClient.handleSignIn(data);
     if (response.data.status === "success") {
       setIsLoggedIn(true);
-      // setUser(response.data.data);
+      setUser(response.data.data);
       navigate("/home");
+      window.location.reload();
     }
   };
 
